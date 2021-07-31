@@ -47,17 +47,23 @@ public class MainActivity extends AppCompatActivity {
                 String gender = genderEditText.getText().toString();
                 String id = idEditText.getText().toString();
 
-                if(view.getId() == R.id.addBtn){
+                if(view.getId() == R.id.addBtn) {
 
-                    long rowId = myDatabaseHelper.insertData(name,age,gender);
-                    if(rowId==-1){
-                        Toast.makeText(getApplicationContext(),"Unsuccessfull",Toast.LENGTH_LONG).show();
+                    if (name.equals("") || age.equals("") || gender.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please Enter all the data ", Toast.LENGTH_LONG).show();
+                    } else {
 
-                    }else{
-                        Toast.makeText(getApplicationContext(),"Successfully "+rowId+" inserted",Toast.LENGTH_LONG).show();
+
+                        long rowId = myDatabaseHelper.insertData(name, age, gender);
+                        if (rowId == -1) {
+                            Toast.makeText(getApplicationContext(), "Unsuccessfull", Toast.LENGTH_LONG).show();
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Successfully " + rowId + " inserted", Toast.LENGTH_LONG).show();
+
+                        }
 
                     }
-
                 }
             }
         });
